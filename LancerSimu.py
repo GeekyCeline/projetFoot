@@ -8,7 +8,7 @@ from StrategiesCreees import RandomStrategy, StrikerStrategy, DefenderStrategy, 
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
 from soccersimulator.gui import SimuGUI,show_state,show_simu
 from soccersimulator.utils import Vector2D
-import __init__
+from __init__ import *
 #Creation d'une partie
 simu = Simulation(team1,team2)
 #Jouer et afficher la partie
