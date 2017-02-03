@@ -106,12 +106,7 @@ class Action(object):
        
         if essai.est_team1():
             return SoccerAction(POS_DEFAUT-(essai.my_position(),Vector2D(3.14,20)))
-        return  SoccerAction(POS_DEFAUT2-(essai.my_position(),Vector2D(3.14,20)))
-<<<<<<< HEAD
-   
-=======
-          
->>>>>>> 3ba8bcf4d5c33d93a146bbc7d8892c49b0bd126a
+ 
          #   return SoccerAction(POS_DEFAUT-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
        #return  SoccerAction(POS_DEFAUT2-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
           
