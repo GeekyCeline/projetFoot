@@ -10,7 +10,9 @@ from soccersimulator.gui import SimuGUI,show_state,show_simu
 from soccersimulator.utils import Vector2D
 from __init__ import *
 #Creation d'une partie
-simu = Simulation(team1,team2)
+
+i=input("Cliquez sur 1 pour un match en 1 vs 1, sur 2 pour un match en 2 vs 2 et sur 4 pour un match ")
+simu = Simulation(get_team(i),get_team_adv(i))
 #Jouer et afficher la partie
 show_simu(simu)
 #Jouer sans afficher
