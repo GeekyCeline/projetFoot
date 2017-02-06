@@ -37,21 +37,22 @@ class StrikerStrategy(Strategy): #attaquant
 class DefenderStrategy(Strategy): #defenseur        
 	def __init__(self):
 		Strategy.__init__(self,"Defender")
-
-
-
-        
-    def compute_strategy(self,state,id_team,id_player):
-        mystate = MyState(state,id_team,id_player)
-        act = Action(state, id_team, id_player)
-        distance_but_ball=mystate.distance_but_ball()
-        
-
-
-        if distance_but_ball < 15:
-            return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))     
   
-	#def compute_strategy(self,state,id_team,id_player):
+	def compute_strategy(self,state,id_team,id_player):
+         mystate = MyState(state,id_team,id_player)
+         act = Action(state, id_team, id_player)
+         distance_but_ball=mystate.distance_but_ball()
+        
+
+
+         if distance_but_ball < 15:
+            return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+
+
+
+
+
+
 
 
 

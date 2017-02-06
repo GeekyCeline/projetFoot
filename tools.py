@@ -98,7 +98,9 @@ class Action(object):
         
        
     def aller_vers_balle(self):
-        return SoccerAction(MyState.ball_position(self) -( self.my_position(),Vector2D(angle=3.14,norm=55)))
+        essai=MyState(self.state,self.idt,self.idp)
+       
+        return SoccerAction(essai.ball_position(self) -( self.my_position(),Vector2D()))
        # return SoccerAction(ball_position(self) -(position_player(self,state,id_team,id_player),Vector2D(angle=3.14,norm=55))
         #
     def aller_vers_but(self):
