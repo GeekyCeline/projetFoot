@@ -11,7 +11,7 @@ Created on Mon Jan 23 17:57:26 2017
 
 @author: 3407073
 """
-
+#
 from soccersimulator.strategies import Strategy
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
 from soccersimulator.gui import SimuGUI,show_state,show_simu

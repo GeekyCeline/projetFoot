@@ -18,3 +18,4 @@ simu = Simulation(get_team(i),get_team(i))
 show_simu(simu)
 #Jouer sans afficher
 simu.start()
+#

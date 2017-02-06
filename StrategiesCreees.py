@@ -68,3 +68,4 @@ class GoalKeeperStrategy(Strategy):
                           
             return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
            
+#

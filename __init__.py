@@ -13,8 +13,8 @@ from StrategiesCreees import RandomStrategy, StrikerStrategy, DefenderStrategy, 
 ## Creation d'une equipe
 serpentar= SoccerTeam(name="team1",login="etu1")
 gryfondor= SoccerTeam(name="team2",login="etu2")
-
-#team 1
+#
+#team 
 
 #team1.add("Helmut",StrikerStrategy())
 #team1.add("Joe",GoalKeeperStrategy())
