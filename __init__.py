@@ -37,7 +37,7 @@ def get_team(i):
     if i ==4: 
         serpentar.add("Itachi",StrikerStrategy())
         serpentar.add("Orochimaru",GoalKeeperStrategy())
-        serpentar.add("Hel",StrikerStrategy())
+        serpentar.add("Hel",DefenderStrategy())
         serpentar.add("Potter",StrikerStrategy())
         return serpentar
     if i == 2: 

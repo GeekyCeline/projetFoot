@@ -58,14 +58,27 @@ class GoalKeeperStrategy(Strategy):
         
         
     def compute_strategy(self,state,id_team,id_player):
-        mystate = MyState(state,id_team,id_player)
-        act = Action(state, id_team, id_player)
-        #distance avec la balle
-        distance = mystate.distance_ball_player()
-         #est_team1(self,state,id_team,id_player):
-        distance_but =mystate.distance_but_ball()
-        if distance_but < 40: 
-                          
-            return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
-           
+        distance = state.ball.position.distance(state.player_state(id_team,id_player).position) #distance avec la balle
+        distance_but = state.ball.position.distance(Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
+        if distance <40 and distance_but<20:
+            position_defaut = Vector2D(6,45) #dans le tools 
+            position_defaut2 = Vector2D(145,45) #dans le tools
+            
+            if distance < PLAYER_RADIUS + BALL_RADIUS:
+                return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=35))
+            
+            if id_team == 1: 
+                return SoccerAction(position_defaut-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
+            return SoccerAction(position_defaut2-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
+          
+#        mystate = MyState(state,id_team,id_player)
+#        act = Action(state, id_team, id_player)
+#        #distance avec la balle
+#        distance = mystate.distance_ball_player()
+#         #est_team1(self,state,id_team,id_player):
+#        distance_but =mystate.distance_but_ball()
+#        if distance_but < 40: 
+#                          
+#            return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
+#           
 #
