@@ -21,25 +21,52 @@ class RandomStrategy(Strategy):
 		return SoccerAction(Vector2D.create_random(-10,10),Vector2D.create_random())
 
 		
+
+
 class StrikerStrategy(Strategy): #attaquant 
 	def __init__(self): 
 		Strategy.__init__(self,"Striker")
+
 	def compute_strategy(self,state,id_team,id_player):
          return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
           #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
 
                  
+
+
 class DefenderStrategy(Strategy): #defenseur        
 	def __init__(self):
 		Strategy.__init__(self,"Defender")
+
+
+
+        
+    def compute_strategy(self,state,id_team,id_player):
+        mystate = MyState(state,id_team,id_player)
+        act = Action(state, id_team, id_player)
+        distance_but_ball=mystate.distance_but_ball()
+        
+
+
+        if distance_but_ball < 15:
+            return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))     
   
-	def compute_strategy(self,state,id_team,id_player):
-         mystate = MyState(state,id_team,id_player)
-         act = Action(state,id_team,id_player)
-         distance =mystate.distance_ball_player #distance avec la balle
-         distance_but_ball=mystate.distance_but_ball #distance_but 
-         if distance_but_ball < 75:
-            return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
+	#def compute_strategy(self,state,id_team,id_player):
+
+
+
+
+        # mystate = MyState(state,id_team,id_player)
+         #act = Action(state,id_team,id_player)
+         #distance =mystate.distance_ball_player #distance avec la balle
+         #distance_but_ball=mystate.distance_but_ball #distance_but 
+         #if distance_but_ball<15:
+            #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+######
+         #if distance_but_ball < 75:
+            #act.aller_vers_balle 
+            #if distance < PLAYER_RADIUS + BALL_RADIUS:
+                #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
 
         
     

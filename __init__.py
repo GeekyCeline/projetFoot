@@ -37,7 +37,8 @@ def get_team(i):
     if i ==2:
         g= SoccerTeam(name="Gryffondor")
         g.add("Potter",StrikerStrategy())
-        g.add("Weasley",GoalKeeperStrategy())
+        #g.add("Weasley",GoalKeeperStrategy())
+        g.add("Granger",DefenderStrategy())
         return g
 
     if i ==4:
@@ -58,7 +59,8 @@ def get_team_adv(i):
     if i ==2:
         s= SoccerTeam(name="Serpentard")
         s.add("Malfoy",StrikerStrategy())
-        s.add("Crabe",GoalKeeperStrategy())
+        #s.add("Crabe",GoalKeeperStrategy())
+        s.add("Goyle",DefenderStrategy())
         return s
 
     if i ==4:
