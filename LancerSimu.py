@@ -9,8 +9,11 @@ from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
 from soccersimulator.gui import SimuGUI,show_state,show_simu
 from soccersimulator.utils import Vector2D
 from __init__ import *
+#from __init__ import get_team
+
 #Creation d'une partie
-simu = Simulation(team1,team2)
+i=input("entrer un 1 ou 2 ou 4: ")
+simu = Simulation(get_team(i),get_team(i))
 #Jouer et afficher la partie
 show_simu(simu)
 #Jouer sans afficher

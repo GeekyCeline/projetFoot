@@ -106,7 +106,8 @@ class Action(object):
        
         if essai.est_team1():
             return SoccerAction(POS_DEFAUT-(essai.my_position(),Vector2D(3.14,20)))
- 
+        return SoccerAction(POS_DEFAUT2-(essai.my_position(),Vector2D(3.14,20)))
+        
          #   return SoccerAction(POS_DEFAUT-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
        #return  SoccerAction(POS_DEFAUT2-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
           
@@ -119,3 +120,4 @@ class Action(object):
 #        distance =distance_ball_player(self,state,id_team,id_player)
 #        if distance < PLAYER_RADIUS + BALL_RADIUS:
 #            return shoot(self,joueur_le_plus_proche(self,state,id_team_id_player))
+
