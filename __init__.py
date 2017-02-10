@@ -11,64 +11,55 @@ from StrategiesCreees import RandomStrategy, StrikerStrategy, DefenderStrategy, 
 #import simple_exemple_commun
 #ou from teams import team1, team2
 ## Creation d'une equipe
-
+serpentar= SoccerTeam(name="team1",login="etu1")
+gryfondor= SoccerTeam(name="team2",login="etu2")
 
 #team 1
 
 #team1.add("Helmut",StrikerStrategy())
 #team1.add("Joe",GoalKeeperStrategy())
-#team1.add("John",DefenderStrategy()) 
-
-#team 2
-
+##team1.add("John",DefenderStrategy()) 
+#
+##team 2
+#
 #team2.add("Patrick",GoalKeeperStrategy())
-#team2.add("John",StrikerStrategy()) #Strategie qui defend
+#team2.add("John",StrikerStrategy()) #Strategie qui defend pb quand il y a que ce joueur comme attaquant 
 #team2.add("Paul",DefenderStrategy())   #Strategie attaque
 
 #team2.add("A",GoalKeeperStrategy())
 
-def get_team(i):
-    
-    if i ==1:
-        g= SoccerTeam(name="Gryffondor")
-        g.add("Potter",StrikerStrategy()) 
-        return g
+def get_team(i): 
+   # s = SoccerSimulator("") 
+    serpentard= SoccerTeam(name="serpentard",login="etu1")
+    if i== 1: 
+        serpentard.add("Itachi", StrikerStrategy())
+        return serpentard
+    if i ==4: 
+        serpentard.add("Itachi",StrikerStrategy())
+        serpentard.add("Orochimaru",GoalKeeperStrategy())
+        serpentard.add("Hel",StrikerStrategy())
+        serpentard.add("Malfoy",StrikerStrategy())
+        return serpentard
+    if i == 2: 
+        serpentard.add("Goyle",GoalKeeperStrategy())
+        serpentard.add("Crabe",StrikerStrategy())
+        
+        return serpentard
 
-    if i ==2:
-        g= SoccerTeam(name="Gryffondor")
-        g.add("Potter",StrikerStrategy())
-        #g.add("Weasley",GoalKeeperStrategy())
-        g.add("Granger",DefenderStrategy())
-        return g
-
-    if i ==4:
-        g= SoccerTeam(name="Gryffondor")
-        g.add("Potter",StrikerStrategy())
-        g.add("Weasley",GoalKeeperStrategy())
-        g.add("Granger",DefenderStrategy())
-        g.add("Dumbledore",StrikerStrategy())
-        return g
-
-def get_team_adv(i):
-     
-    if i ==1:
-        s= SoccerTeam(name="Serpentard")
-        s.add("Malfoy",StrikerStrategy()) 
-        return s
-
-    if i ==2:
-        s= SoccerTeam(name="Serpentard")
-        s.add("Malfoy",StrikerStrategy())
-        #s.add("Crabe",GoalKeeperStrategy())
-        s.add("Goyle",DefenderStrategy())
-        return s
-
-    if i ==4:
-        s= SoccerTeam(name="Serpentard")
-        s.add("Malfoy",StrikerStrategy())
-        s.add("Crabe",GoalKeeperStrategy())
-        s.add("Goyle",DefenderStrategy())
-        s.add("Voldemort",StrikerStrategy())
-        return s
-
-
+#def get_team2(i): 
+#   # s = SoccerSimulator("") 
+#    conoha= SoccerTeam(name="conoha",login="etu1")
+#    if i== 1: 
+#        conoha.add("I", StrikerStrategy())
+#        return serpentar
+#    if i ==4: 
+#        conoha.add("Itachi",StrikerStrategy())
+#        conoha.add("Orochimaru",GoalKeeperStrategy())
+#        conoha.add("Hel",StrikerStrategy())
+#        conoha.add("azaikcez",StrikerStrategy())
+#        return conoha
+#    if i == 2: 
+#        conoha.add("Joe",GoalKeeperStrategy())
+#        conoha.add("Pecvze",StrikerStrategy())
+#        
+#        return conoha
