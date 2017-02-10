@@ -36,10 +36,10 @@ class StrikerStrategy(Strategy): #attaquant
           #if id_team==1: 
           #    position_balle = state.ball.position
               
-          if balle_proche >= MyState.distance_ball_player(self) and state.ball.position != position_balle:
+          if balle_proche >= mystate.distance_ball_player and state.ball.position != position_balle:
               return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))+ SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),shoot)#+ eviter(adv.) 
           
-          if balle_proche <= MyState.distance_ball_player(self):
+          if balle_proche <= mystate.distance_ball_player:
               shoot = Vector2D(angle=3.14,norm=55) 
               #on tire vers les buts 
               #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
@@ -55,21 +55,21 @@ class DefenderStrategy(Strategy): #defenseur
           act = Action(state,id_team,id_player)
          
 		#return SoccerAction((state.player_state(id_team,id_player).position)-(state.player_state(self.id_team,self.id_player).position),Vector2D.create_random())
-          distance = mystate.distance_ball_player(self,state,id_team,id_player) #distance avec la balle
-          distance_but = mystate.distance_but_ball(self,state,id_team,id_player)#distance_but 
+          distance = mystate.distance_ball_player #distance avec la balle
+          distance_but = mystate.distance_but_ball#distance_but 
          
           shoot = 0 
     
           if distance >50: 
               
              if(self.id_team==2): 
-                 pos = Vector2D(GAME_WIDTH)-MyState.my_position
+                 pos = Vector2D(GAME_WIDTH)-mystate.my_position
                  id_team_adv = 1
              else:
-                 pos = Vector2D(GAME_WIDTH)-MyState.my_position
+                 pos = Vector2D(GAME_WIDTH)-mystate.my_position
                  id_team_adv  =2
           else:
-             pos= MyState.distance_ball_player(self)
+             pos= mystate.distance_ball_player
              shoot= (state.get_goal_center(id_team_adv)-(state.player_state(id_team,id_player).position))
           
          
