@@ -31,14 +31,34 @@ class StrikerStrategy(Strategy): #attaquant
 
 	def compute_strategy(self,state,id_team,id_player):
          mystate = MyState(state,id_team,id_player)
-        # act.shoot(self)
-         balle_proche = tools.PLAYER_RADIUS + tools.BALL_RADIUS
-         shoot = Vector2D(0,0)
+         act = Action(state,id_team,id_player)
          
-         return SoccerAction(mystate.ball_position()-mystate.my_position(),Vector2D(angle=3.14,norm=10))
-         #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
-          #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
+         balle_proche =tools.PLAYER_RADIUS + tools.BALL_RADIUS#rayon ball + player
+         shoot = 0 #Vector2D(0,0)
+          #if id_team==1: 
+          #    position_balle = state.ball.position
+              
+         if balle_proche >= mystate.distance_ball_player():# and state.ball.position != position_balle:
+             return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))+ SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),shoot)#+ eviter(adv.) 
+          
+         if balle_proche <= mystate.distance_ball_player():
+             shoot = Vector2D(angle=3.14,norm=55) 
+              #on tire vers les buts 
+              #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
+             return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),shoot) #+eviter()
 
+#         mystate = MyState(state,id_team,id_player)
+#        # act.shoot(self)
+#         return SoccerAction(mystate.ball_position()-mystate.my_position(),Vector2D(angle=3.14,norm=55))
+#         #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+#          #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
+
+    
+#         return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+#         #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
+    
+         #on definit deux Variables de class 
+          
                  
 
 class DefenderStrategy(Strategy): #defenseur        
@@ -58,19 +78,12 @@ class DefenderStrategy(Strategy): #defenseur
           
           #position_defaut-(state.player_state(id_team,id_player).position),Vector2D(3.14,20)
           #pos.pos_goal()
-          if distance_but < 40:     
-             #return SoccerAction(mystate.ball_position() + (6*(mystate.ball_position()).x) - mystate.my_position(),Vector2D(angle=3.14,norm=55))
-             #return SoccerAction(mystate.ball_position() -(2*(mystate.ball_position()).x) - mystate.my_position(),Vector2D(angle=3.14,norm=20))
-             
-             return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position)  +  mystate.ball_position() -(2*(mystate.ball_position()).x) - mystate.my_position(),Vector2D(angle=3.14,norm=5))
-             
-             #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
+          if distance_but < 40: 
+             return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
            
           if distance < 75:
              if distance < tools.PLAYER_RADIUS + tools.BALL_RADIUS:
-                return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position)  +  mystate.ball_position() -(2*(mystate.ball_position()).x) - mystate.my_position(),Vector2D(angle=3.14,norm=5))
-              
-                #return SoccerAction(mystate.ball_position()-mystate.my_position(),Vector2D(angle=3.14,norm=10)) 
+                return SoccerAction(mystate.ball_position()-mystate.my_position(),Vector2D(angle=3.14,norm=10)) 
           
 #	       #return SoccerAction((state.player_state(id_team,id_player).position)-(state.player_state(self.id_team,self.id_player).position),Vector2D.create_random())
 

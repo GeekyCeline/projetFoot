@@ -47,7 +47,7 @@ class DefenderStrategy(Strategy): #defenseur
             
 #	    return SoccerAction((state.player_state(id_team,id_player).position)-(state.player_state(self.id_team,self.id_player).position),Vector2D.create_random())
          #return SoccerAction(position_defaut2-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))
-    #       
+
 class GoalKeeperStrategy(Strategy): 
     def __init__(self): 
         Strategy.__init__(self,"GoalKeeper")
