@@ -18,8 +18,13 @@ from __init__ import *
 
 i=input("Cliquez sur 1 pour un match en 1 vs 1, sur 2 pour un match en 2 vs 2 et sur 4 pour un match ")
 simu = Simulation(get_team(i),get_team_adv(i))
+
 #simu = Simulation(get_team_adv(i))
 #simu = Simulation(get_team(i))
+
+#simu = Simulation(None,get_team_adv(i))
+#simu = Simulation(get_team_adv(i), None)
+
 #Jouer et afficher la partie
 show_simu(simu)
 #Jouer sans afficher

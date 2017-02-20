@@ -23,8 +23,12 @@ class RandomStrategy(Strategy):
 	def compute_strategy(self,state,id_team,id_player): 
 		return SoccerAction(Vector2D.create_random(-10,10),Vector2D.create_random())
 
+<<<<<<< HEAD
 '''
 #==============================================================================
+=======
+
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
 
  attaquants
  
@@ -35,14 +39,23 @@ class StrikerStrategy_de_base(Strategy): #attaquant de base
 
 	def compute_strategy(self,state,id_team,id_player):
          mystate = MyState(state,id_team,id_player)
+<<<<<<< HEAD
          act = Action(state,id_team,id_player)
          balle_proche = tools.PLAYER_RADIUS + tools.BALL_RADIUS
          shoot = Vector2D(0,0)
+=======
+        # act.shoot(self)
+         balle_proche = tools.PLAYER_RADIUS + tools.BALL_RADIUS
+         shoot = Vector2D(0,0)
+         #return SoccerAction(mystate.ball_position()-mystate.my_position(), mystate.but(mystate.adv()) - mystate.my_position())
+         
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
          if mystate.est_team1(): 
              V =  Vector2D(angle=6.18,norm=10)
              print('but2')
          else: 
              print('but1')
+<<<<<<< HEAD
              V = Vector2D(angle=3.14,norm=1.8)
              
          return SoccerAction(mystate.ball_position()-mystate.my_position(),V)
@@ -78,6 +91,14 @@ class StrikerStrategy_de_base(Strategy): #attaquant de base
 ''' 2 vs 2'''
 
 class DefenderStrategy_de_base(Strategy): #defenseur        
+=======
+             V = Vector2D(angle=3.14,norm=10)
+         return SoccerAction(mystate.ball_position()-mystate.my_position(),V)         
+         #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+          #return SoccerAction((state.ball.position)-Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
+
+class DefenderStrategy(Strategy): #defenseur        
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
 	def __init__(self):
 		Strategy.__init__(self,"Defender")
   
@@ -108,12 +129,16 @@ class DefenderStrategy_de_base(Strategy): #defenseur
               V =  Vector2D(angle=6.18,norm=10)
               print('but2')
           else: 
+<<<<<<< HEAD
               
+=======
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
               print('but1')
               V = Vector2D(angle=3.14,norm=10)  
              
           if distance >20 : 
               if (mystate.adv()==2) :
+<<<<<<< HEAD
                   position = V+Vector2D((1.3/5)*GAME_WIDTH,state.ball.position.y)-mystate.my_position()
               else: 
                   position = V+Vector2D((3.7/5)*GAME_WIDTH,state.ball.position.y)-mystate.my_position()
@@ -128,6 +153,34 @@ class DefenderStrategy_de_base(Strategy): #defenseur
 '''
 
 
+=======
+                  position = V+Vector2D((0.5/5)*GAME_WIDTH,state.ball.position.y)-mystate.my_position()
+              else: 
+                  position = V+Vector2D((3.5/5)*GAME_WIDTH,state.ball.position.y)-mystate.my_position()
+          else: 
+              position= state.ball.position-mystate.my_position()
+             
+          return SoccerAction(position,V-mystate.my_position())
+            
+                #return SoccerAction(mystate.ball_position()-mystate.my_position(),Vector2D(angle=3.14,norm=10)) 
+#	       #return SoccerAction((state.player_state(id_team,id_player).position)-(state.player_state(self.id_team,self.id_player).position),Vector2D.create_random())
+#         if distance <40 :
+#                #position_defaut = POS_DEFAUT
+#             position_defaut = Vector2D(6,45)
+#             if distance < PLAYER_RADIUS + BALL_RADIUS:
+#                    return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55))
+##             if id_team == 1: 
+##                return SoccerAction(position_defaut-(state.player_state(id_team,id_player).position),Vector2D(3.14,20))+SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+##            
+##             if diastance
+##                 return  act.aller_vers_but(self,state,id_team,id_player) +act.aller_vers_balle(self,state,id_team,id_player)
+##    
+
+         #if distance_but_ball<15:
+            #return SoccerAction(state.ball.position -(state.player_state(id_team,id_player).position),Vector2D(angle=3.14,norm=55)) 
+
+         
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
    
 class GoalKeeperStrategy(Strategy): 
     def __init__(self): 
@@ -136,7 +189,11 @@ class GoalKeeperStrategy(Strategy):
     def compute_strategy(self,state,id_team,id_player):
         mystate = MyState(state,id_team,id_player)
         act = Action(state, id_team, id_player)
+<<<<<<< HEAD
         pos = Position(state,id_team, id_player)        
+=======
+        pos = Position(state,id_team, id_player )        
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
         #distance avec la balle
         distance = mystate.distance_ball_player()
          #est_team1(self,state,id_team,id_player):
@@ -151,15 +208,20 @@ class GoalKeeperStrategy(Strategy):
 #             shoot = mystate.but(mystate.adv())- mystate.my_position()
 #         return SoccerAction(vitesse,shoot)
 #==============================================================================
+<<<<<<< HEAD
        
             
         
         #if distance<= PLAYER_RADIUS-BALL_RADIUS or distance_but < 30:
         
+=======
+            
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
         posi= (state.ball.position+mystate.but(id_team))
         posi.x= posi.x/2
         posi.y= posi.y/2
         posi= posi-mystate.my_position()
+<<<<<<< HEAD
 #        else: 
 #            posi= pos.se_placer_goal()
             
@@ -172,3 +234,8 @@ class GoalKeeperStrategy(Strategy):
         return SoccerAction(posi +pos.se_placer_goal() ,Vector2D(6,(id_team-1.5)*20) +mystate.but(mystate.adv())- mystate.my_position())
         #return SoccerAction(posi,Vector2D(6,(id_team-1.5)*20))
         
+=======
+       
+        return SoccerAction(posi,Vector2D(6,(id_team-1.5)*20))
+#      pos.joueur_le_plus_proche()
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7

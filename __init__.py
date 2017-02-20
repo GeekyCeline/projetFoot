@@ -39,14 +39,24 @@ def get_team(i):
     
     if i ==1:
         g= SoccerTeam(name="Gryffondor")
+<<<<<<< HEAD
         g.add("Potter",StrikerStrategy_de_base())#+DefenderStrategy()) 
+=======
+        g.add("Potter",StrikerStrategy())#+DefenderStrategy()) 
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
         return g
 
     if i ==2:
         g= SoccerTeam(name="Gryffondor")
+<<<<<<< HEAD
         #g.add("Potter",StrikerStrategy_de_base())
         g.add("Weasley",GoalKeeperStrategy())
         #g.add("Granger",DefenderStrategy_de_base())#+GoalKeeperStrategy())
+=======
+        g.add("Potter",StrikerStrategy())
+        #g.add("Weasley",GoalKeeperStrategy())
+        g.add("Granger",DefenderStrategy())#+GoalKeeperStrategy())
+>>>>>>> 72b0ab0d3ae9f02f3faf5a00e3f81980958b8ab7
         return g
 
     if i ==4:
