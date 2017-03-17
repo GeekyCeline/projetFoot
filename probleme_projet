@@ -1,0 +1,204 @@
+PROBLEMES :
+angle
+anticiper la position de la balle-> aller vers le vecteur acceleration de la balle 
+
+
+tools: 
+-tirer_vers_but 
+-eviter adv(fonction)
+-vers une passe 
+
+match 1 vs 1
+joueur = attaquant/ defenseur 
+
+autres matchs 
+goal-> reste devant les buts 
+
+###########################################
+ mettre sur git -> to do list 
+ 
+Objectif: 
+Conditions initiales
+
+    - dans la tools, on utilise: 
+        joueur_le_plus_proche() si le joueur est proche de la balle et adv est devant 
+        aller_vers_balle() si 
+        shoot() si la distance avec le joueur 
+
+Methodes d'évaluation
+    - 
+
+paramètres à optimiser 
+
+id
+#################################################
+passe 
+dribble 
+observer.py
+arbre de decision ou algorithme génétique 
+
+
+
+
+dump sauvegarder tout dans un fichier
+
+
+
+######################################################
+
+
+
+entrainement 
+à la fin : cpickle pour sauvegarder l'arbre de decision 
+
+from soccersimulator import settings,SoccerTeam, Simulation, show_simu, KeyboardStrategy
+from soccersimulator import Strategy, SoccerAction, Vector2D, load_jsonz,dump_jsonz,Vector2D
+import logging
+from arbres_utils import build_apprentissage,affiche_arbre,DTreeStrategy,apprend_arbre,genere_dot
+from sklearn.tree       import export_graphviz
+from sklearn.tree import DecisionTreeClassifier
+import os.path
+## Strategie aleatoire
+class FonceStrategy(Strategy):
+    def __init__(self):
+        super(FonceStrategy,self).__init__("Fonce")
+    def compute_strategy(self,state,id_team,id_player):
+        return SoccerAction(state.ball.position-state.player_state(id_team,id_player).position,\
+                Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position)
+
+class StaticStrategy(Strategy):
+    def __init__(self):
+        super(StaticStrategy,self).__init__("Static")
+    def compute_strategy(self,state,id_team,id_player):
+        return SoccerAction()
+
+#######
+## Constructioon des equipes
+#######
+
+team1 = SoccerTeam("team1")
+strat_j1 = KeyboardStrategy()
+strat_j1.add('a',FonceStrategy())
+strat_j1.add('z',StaticStrategy())
+team1.add("Jexp 1",strat_j1)
+team1.add("Jexp 2",StaticStrategy())
+team2 = SoccerTeam("team2")
+team2.add("rien 1", StaticStrategy())
+team2.add("rien 2", StaticStrategy())
+## -- End pasted text --
+Out[1]: team2(): rien 1 (Static) rien 2 (Static)
+
+################################################"""
+ simu = Simulation(team1,team2)
+    show_simu(simu)
+## -- End pasted text --
+##############################################
+
+
+strat_j1.states # l'état du jeu à chaque fois qu'une touche est appuyée, (1=id_team, 'Fonce'=> label 
+
+/*resultat*/
+Out[4]: 
+[(Step: 62, Ball: pos: (75.000000,45.000000), vit: (0.000000,0.000000) (1,0):pos: (70.773326,43.414997), vit: (0.187266,0.070225), action:Acc:(0.187266,0.070225), Shoot:(6.000000,0.000000), Name: (1,1):pos: (15.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,0):pos: (135.000000,22.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,1):pos: (135.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: score : 0-0,
+  (1, 0, 'Fonce')),
+ (Step: 85, Ball: pos: (127.238740,45.262560), vit: (1.131767,0.005688) (1,0):pos: (93.348336,46.218060), vit: (0.199915,-0.005828), action:Acc:(0.199915,-0.005828), Shoot:(5.999653,-0.064502), Name: (1,1):pos: (15.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,0):pos: (135.000000,22.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,1):pos: (135.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: score : 0-0,
+  (1, 0, 'Static')),
+ (Step: 158, Ball: pos: (143.176407,45.342665), vit: (0.010305,0.000052) (1,0):pos: (103.340921,45.979479), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (1,1):pos: (15.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,0):pos: (135.000000,22.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,1):pos: (135.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: score : 0-0,
+  (1, 0, 'Fonce')),
+
+
+#################################################""
+dx,dy = build_apprentissage(strat_j1.states,m
+
+##################################################
+
+### Transformation d'un etat en features : state,idt,idp -> R^d
+def my_get_features(state,idt,idp):
+    """ extraction du vecteur de features d'un etat, ici distance a la balle, distance au but, distance balle but """
+    p_pos= state.player_state(idt,idp).position
+    f1 = p_pos.distance(state.ball.position)
+    f2= p_pos.distance( Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
+    f3 = state.ball.position.distance(Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
+    return [f1,f2,f3]
+## -- End pasted text --
+####################################################
+
+In [6]: s = strat_j1.states[0]
+
+In [7]: s
+Out[7]: 
+(Step: 62, Ball: pos: (75.000000,45.000000), vit: (0.000000,0.000000) (1,0):pos: (70.773326,43.414997), vit: (0.187266,0.070225), action:Acc:(0.187266,0.070225), Shoot:(6.000000,0.000000), Name: (1,1):pos: (15.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,0):pos: (135.000000,22.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,1):pos: (135.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: score : 0-0,
+ (1, 0, 'Fonce'))
+
+####################################################"
+
+
+In [8]: my_get_features(s[0],s[1][0],s[1][1])
+Out[8]: [4.514090089881471, 79.24252739873496, 75.0]
+
+#######################################################
+
+
+
+
+In [9]: dx,dy = build_apprentissage(strat_j1.states,my_get_features)
+
+In [10]: dx
+Out[10]: 
+array([[   4.51409009,   79.2425274 ,   75.        ],
+       [  33.90387003,   56.6647567 ,   22.76277475],
+       [  39.8405755 ,   46.66935866,    6.83219183],
+       [   0.65934086,    6.01913809,    6.6780103 ],
+       [   6.4218904 ,   13.09110915,    6.67131175],
+       [  51.51409009,  124.55449939,   75.        ],
+       [  41.98510296,  115.25853725,   75.        ],
+       [  24.17343609,   98.0025461 ,   75.        ],
+       [  15.84115426,   90.00456882,   75.        ],
+       [  25.18543969,   61.12452771,   36.31036172]])
+
+
+####################################################
+
+
+In [11]: dy
+Out[11]: 
+array(['Fonce', 'Static', 'Fonce', 'Static', 'Fonce', 'Static', 'Fonce',
+       'Static', 'Fonce', 'Static'], 
+      dtype='|S6')
+
+In [12]: dt = apprend_arbre(dx,dy)
+
+
+######################################################
+
+
+In [13]: dt.predict(dx[0])
+/users/Etu3/3407073/.local/lib/python2.7/site-packages/sklearn/utils/validation.py:395: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and will raise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
+  DeprecationWarning)
+Out[13]: 
+array(['Fonce'], 
+      dtype='|S6')
+
+#############################################################
+
+
+In [14]: affiche_arbre(dt)
+Out[14]: '|---------X0<=20.01\n|         |---------X2<=40.84\n|         |         |---------(Fonce: 1, Static: 1)\n|         |---------X2>40.84\n|                   |---------(Fonce: 2, Static: 0)\n|---------X0>20.01\n          |---------X0<=36.87\n          |         |---------(Fonce: 0, Static: 3)\n          |---------X0>36.87\n                    |---------(Fonce: 2, Static: 1)\n'
+
+In [15]: print(affiche_arbre(dt))
+|---------X0<=20.01
+|         |---------X2<=40.84
+|         |         |---------(Fonce: 1, Static: 1)
+|         |---------X2>40.84
+|                   |---------(Fonce: 2, Static: 0)
+|---------X0>20.01
+          |---------X0<=36.87
+          |         |---------(Fonce: 0, Static: 3)
+          |---------X0>36.87
+                    |---------(Fonce: 2, Static: 1)
+
+
+In [16]:     genere_dot(dt,"test_arbre.dot")
+Use dot -Tpdf test_arbre.dot test_arbre..pdf to generate pdf
+
+
