@@ -6,7 +6,7 @@ Created on Mon Jan 30 18:38:40 2017
 """
 from soccersimulator.strategies import Strategy
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
-from StrategiesCreees import RandomStrategy, StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy,DefenderStrategy
+from StrategiesCreees import RandomStrategy,StrikerStrategy, StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy,DefenderStrategy
 
 #import simple_exemple_commun
 #ou from teams import team1, team2
@@ -30,8 +30,8 @@ def get_team(i):
         g= SoccerTeam(name="Gryffondor")
         g.add("Potter",StrikerStrategy_de_base())
         g.add("Weasley",GoalKeeperStrategy())
-        g.add("Granger",DefenderStrategy_de_base())
-        g.add("Dumbledore",StrikerStrategy_de_base())
+        g.add("Granger",DefenderStrategy())
+        g.add("Dumbledore",StrikerStrategy())
         return g
 
 def get_team_adv(i):
@@ -48,8 +48,8 @@ def get_team_adv(i):
         s= SoccerTeam(name="Serpentard")
         s.add("Malfoy",StrikerStrategy_de_base())
         s.add("Crabe",GoalKeeperStrategy())
-        s.add("Goyle",DefenderStrategy_de_base())
-        s.add("Voldemort",StrikerStrategy_de_base())
+        s.add("Goyle",DefenderStrategy())
+        s.add("Voldemort",StrikerStrategy())
         return s
 
 
