@@ -237,7 +237,7 @@ class Position(object):#emplacements
                 for i in range(4):
                     pos = self.state.player_state(2, i).position
                     liste_joueur.append(pos)
-        print(liste_joueur)            
+        #print(liste_joueur)            
         #Retourne une liste de toutes les positions de mes joueurs, quelque soit la team ou le nombre de joueurs.
         return liste_joueur
 
