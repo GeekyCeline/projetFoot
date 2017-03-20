@@ -24,14 +24,14 @@ show_simu(simu)
 simu.start()
 
 # recuperation de tous les etats
-training_states = strat_j1.states
+#training_states = strat_j1.states
     # sauvegarde dans un fichier
-dump_jsonz(training_states,fn)
+#dump_jsonz(training_states,fn)
 
-def entrainement(fn):
-    simu = Simulation(team1,team2)
-    show_simu(simu)
-    # recuperation de tous les etats
-    training_states = strat_j1.states
-    # sauvegarde dans un fichier
-    dump_jsonz(training_states,fn)
+#def entrainement(fn):
+#    simu = Simulation(team1,team2)
+#    show_simu(simu)
+#    # recuperation de tous les etats
+#    training_states = strat_j1.states
+#    # sauvegarde dans un fichier
+#    dump_jsonz(training_states,fn)

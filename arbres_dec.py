@@ -12,8 +12,8 @@ from arbres_utils import build_apprentissage,affiche_arbre,DTreeStrategy,apprend
 from sklearn.tree 	import export_graphviz
 from sklearn.tree import DecisionTreeClassifier
 import os.path
-
-from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy
+from  tools import * 
+from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base,StrikerStrategy,DefenderStrategy_de_base, GoalKeeperStrategy
 from __init__ import *
 
 ## Strategie aleatoire
@@ -30,22 +30,25 @@ class StaticStrategy(Strategy):
     def compute_strategy(self,state,id_team,id_player):
         return SoccerAction()
 
-#######
-## Constructioon des equipes
-#######
-
-team1 = SoccerTeam("team1")
+#######team1 = SoccerTeam("team1")
 strat_j1 = KeyboardStrategy()
 strat_j1.add('a',FonceStrategy())
 strat_j1.add('z',StaticStrategy())
 strat_j1.add('e',DefenderStrategy()) # ajouter
 strat_j1.add('d',GoalKeeperStrategy())
+strat_j1.add('q',StrikerStrategy()) 
+strat_j1.add('f',StrikerStrategy_de_base())
 #ajouter si besoin 
+team1 = SoccerTeam('team1')
 team1.add("Jexp 1",strat_j1)
 team1.add("Jexp 2",StaticStrategy())
 team2 = SoccerTeam("team2")
-team2.add("rien 1", StaticStrategy())
+team2.add("rien 1", FonceStrategy())
 team2.add("rien 2", StaticStrategy())
+## Constructioon des equipes
+#######
+
+
 
 
 ### Transformation d'un etat en features : state,idt,idp -> R^d
