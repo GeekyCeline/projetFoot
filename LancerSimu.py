@@ -11,7 +11,7 @@ from soccersimulator.utils import Vector2D
 from __init__ import *
 #Creation d'une partie
 import logging
-from arbres_dec import * 
+#from arbres_dec import * 
 logging.basicConfig(level=logging.DEBUG)
 
 
