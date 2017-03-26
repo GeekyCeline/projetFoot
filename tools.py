@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jan 29 21:07:10 2017
-
 @author: Soumahoro Kady
 """
 
 # -*- coding: utf-8 -*-
 """
 Created on Mon Jan 23 17:57:26 2017
-
 @author: 3407073
 """
 
@@ -47,9 +45,7 @@ POS_DEFAUT2 = Vector2D(GAME_WIDTH+45,GAME_WIDTH/2)  #goal team 2
 
 '''      
 ###########################################################
-
 #LA BASE = outils 
-
 ############################################################ 
 '''  
 
@@ -124,11 +120,12 @@ class MyState(object):
     def PR_BR(self): 
         return PLAYER_RADIUS+BALL_RADIUS
 
+    @property 
+    def pos_attaquant(self): 
+        return  SoccerAction(Vector2D(10,GAME_WIDTH-60) -(self.state.player_state(self.idt,self.idp)).position)
 '''       
 ###########################################################
-
 #NOUVELLE CLASSE = versOu
-
 ############################################################ 
 '''  
 class versOu(object): 
@@ -149,9 +146,7 @@ class versOu(object):
 
 '''       
 ###########################################################
-
 #NOUVELLE CLASSE = Qui à la balle
-
 ############################################################ 
 '''  
 class Qui_a_la_balle(object): 
@@ -159,10 +154,11 @@ class Qui_a_la_balle(object):
         self.state= state
         self.idt= id_team
         self.idp = id_player
-    
+        
+    @property
     def j_ai_la_balle(self): 
         mystate= MyState(self.state,self.idt,self.idp)
-        if mystate.distance_ball_player(self)>mystate.PR_BR:
+        if mystate.distance_ball_player > mystate.PR_BR:
             return False
         return True
     
@@ -178,9 +174,7 @@ class Qui_a_la_balle(object):
         
 '''    
 ###########################################################
-
 #NOUVELLE CLASSE = POSITION
-
 ############################################################ 
 '''              
 class Position(object):#emplacements 
@@ -256,9 +250,9 @@ class Position(object):#emplacements
                 distances[round(d,2)] = i # round arrondir a 2 chiffres apres la virgule,ici
         for i in distances.keys():
             liste.append(i)
-        liste.sort()
-        print(liste)        
-        pos = distances.get(liste[rang-1])#clé
+        sorted(liste)
+        #print(liste)        
+        pos = distances.get(liste[0])#liste[rang-1])#clé
         return pos#Retourne la position
        
        
@@ -279,9 +273,7 @@ class Position(object):#emplacements
 
 '''        
 ###########################################################
-
 #NOUVELLE CLASSE = ACTION 
-
 ############################################################ 
 '''
 class Action(object): 
@@ -328,17 +320,25 @@ class Action(object):
                 shoot.y =shoot.y - (GAME_GOAL_HEIGHT /2.4)
                 print("ici2")
             return SoccerAction(posi.joueur_le_plus_proche(id_player,self)-mystate.my_position(),shoot(self))
-        
-    def passe(self):
-        mystate = MyState(self.state,self.idt,self.idp)
+    
+    def passe_test(self,state,id_team,id_player): 
         posi  = Position(self.state,self.idt,self.idp)
-        print("ici")
-        if mystate.distance_ball_player < mystate.PR_BR : 
-            #return SoccerAction( Vector2D(), (posi.joueur_le_plus_proche(1)- mystate.ball_position ).norm_max(5))
-            
-            return SoccerAction(Vector2D(), (posi.joueur_le_plus_proche(self)- mystate.ball_position ).norm_max(5))
-        print("la")
-        return SoccerAction(mystate.ball_position - mystate.my_position)
+        mystate = MyState(self.state,self.idt,self.idp)
+        proche= posi.joueur_le_plus_proche(self)
+        
+        if proche != mystate.my_position and Qui_a_la_balle.j_ai_la_balle: 
+            return SoccerAction(proche-mystate.ball_position, 10)
+        
+#    def passe(self):
+#        mystate = MyState(self.state,self.idt,self.idp)
+#        posi  = Position(self.state,self.idt,self.idp)
+#        print("ici")
+#        if mystate.distance_ball_player < mystate.PR_BR : 
+#            #return SoccerAction( Vector2D(), (posi.joueur_le_plus_proche(1)- mystate.ball_position ).norm_max(5))
+#            
+#            return SoccerAction(Vector2D(), (posi.joueur_le_plus_proche(self)- mystate.ball_position ).norm_max(5))
+#        print("la")
+#        return SoccerAction(mystate.ball_position - mystate.my_position)
     
     def shoot(self,state,id_team,id_player):
         mystate = MyState(self.state,self.idt,self.idp)
@@ -356,4 +356,3 @@ class Action(object):
 #            if self.idt== mystate.adv(self): 
 #                liste.append(i)
 #        if 
-                

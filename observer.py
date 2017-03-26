@@ -2,7 +2,7 @@
 """
 Created on Sat Mar  4 15:09:56 2017
 
-@author: 3407073
+@author: eleve
 """
 from soccersimulator.strategies import Strategy
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction

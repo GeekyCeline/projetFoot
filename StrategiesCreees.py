@@ -1,10 +1,10 @@
-
 # -*- coding: utf-8 -*-
 """
 Created on Mon Jan 23 17:01:06 2017
-
 @author: 3407073
 """
+from soccersimulator import settings,SoccerTeam, Simulation, show_simu, KeyboardStrategy
+from soccersimulator import Strategy, SoccerAction, Vector2D, load_jsonz,dump_jsonz,Vector2D
 
 
 from soccersimulator.strategies import Strategy
@@ -29,22 +29,30 @@ class RandomStrategy(Strategy):
  
 '''
 
-class Striker1(Strategy): 
+class Striker1(Strategy): #1 vs 1
       def __init__(self): 
-		Strategy.__init__(self,"Striker")
+		Strategy.__init__(self,"Striker1")
       def compute_strategy(self,state,id_team,id_player):
          mystate = MyState(state,id_team,id_player)
          act = Action(state,id_team,id_player)
          pos = Position(state,id_team,id_player)
+         mystate.pos_attaquant
          if mystate.distance_ball_player< mystate.PR_BR and mystate.my_position<mystate.ball_position.x: 
              return SoccerAction((mystate.ball_position -mystate.my_position),(Vector2D(x=GAME_WIDTH,y=MEDIUM_HEIGHT)).nor_max(5))
          elif mystate.distance_ball_player< mystate.PR_BR and mystate.my_position<mystate.ball_position.x: 
              return SoccerAction(mystate.ball_position-mystate.my_position ,V) + act.passe()
-         return act.dribbler(self)
+         #return act.dribbler(self)
          
-class StrikerStrategy_de_base(Strategy): #attaquant de base
+class Attaquant1(Strategy):
+    def __init__(self):
+        Strategy.__init__(self,"Attaquant1")
+    def compute_strategy(self,state,id_team,id_player):
+        return SoccerAction(state.ball.position-state.player_state(id_team,id_player).position,\
+                Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position)         
+         
+class StrikerStrategy_de_base(Strategy): #attaquant de base 2 vs 2
 	def __init__(self): 
-		Strategy.__init__(self,"Striker")
+		Strategy.__init__(self,"Striker_de_base")
 	def compute_strategy(self,state,id_team,id_player):
          mystate = MyState(state,id_team,id_player)
          act = Action(state,id_team,id_player)
@@ -60,16 +68,17 @@ class StrikerStrategy_de_base(Strategy): #attaquant de base
              V =  Vector2D(angle=6.18,norm=10)
          else:
              V = Vector2D(angle=3.14,norm=1.8)
-         j=pos.position_tout_les_joueurs()
+         #j=pos.position_tout_les_joueurs()
  
          if qui.mon_equipe_a_la_b() and mystate.distance_ball_player > 40 : 
              return mystate.en_attente
          else:
-             return SoccerAction(mystate.ball_position-mystate.my_position ,V) #+ act.passe()
+             if qui.j_ai_la_balle :
+                 return SoccerAction(mystate.ball_position-mystate.my_position ,V) + act.passe_test(state,id_team,id_player)
 
 #==============================================================================
  
-class StrikerStrategy(Strategy):
+class StrikerStrategy(Strategy): # 4 vs 4 pour 1 joueur 
     def __init__(self):
         Strategy.__init__(self,"Striker")
     def compute_strategy(self,state,id_team,id_player):
