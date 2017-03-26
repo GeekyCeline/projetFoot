@@ -35,3 +35,4 @@ simu.start()
 #    training_states = strat_j1.states
 #    # sauvegarde dans un fichier
 #    dump_jsonz(training_states,fn)
+#cpickle pour enregistrer le pdf 
