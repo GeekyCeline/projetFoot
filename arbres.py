@@ -1,20 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 13 16:31:37 2017
-
-@author: 3407073
-"""
-
 from soccersimulator import settings,SoccerTeam, Simulation, show_simu, KeyboardStrategy
 from soccersimulator import Strategy, SoccerAction, Vector2D, load_jsonz,dump_jsonz,Vector2D
+#from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy
 import logging
 from arbres_utils import build_apprentissage,affiche_arbre,DTreeStrategy,apprend_arbre,genere_dot
 from sklearn.tree 	import export_graphviz
 from sklearn.tree import DecisionTreeClassifier
+#from tools import *
 import os.path
-from  tools import * 
-from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base,StrikerStrategy,DefenderStrategy_de_base, GoalKeeperStrategy
-from __init__ import *
+from tools import *
 
 ## Strategie aleatoire
 class FonceStrategy(Strategy):
@@ -30,48 +23,42 @@ class StaticStrategy(Strategy):
     def compute_strategy(self,state,id_team,id_player):
         return SoccerAction()
 
-#######team1 = SoccerTeam("team1")
-strat_j1 = KeyboardStrategy()
-strat_j1.add('a',FonceStrategy())
-strat_j1.add('z',StaticStrategy())
-strat_j1.add('e',DefenderStrategy()) # ajouter
-strat_j1.add('d',GoalKeeperStrategy())
-strat_j1.add('q',StrikerStrategy()) 
-strat_j1.add('f',StrikerStrategy_de_base())
-<<<<<<< HEAD
-strat_j1.add('x',Striker1())
-=======
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
-#ajouter si besoin 
-team1 = SoccerTeam('team1')
-team1.add("Jexp 1",strat_j1)
-team1.add("Jexp 2",StaticStrategy())
-team2 = SoccerTeam("team2")
-team2.add("rien 1", FonceStrategy())
-team2.add("rien 2", StaticStrategy())
+#######
 ## Constructioon des equipes
 #######
 
-
+team1 = SoccerTeam("team1")
+strat_j1 = KeyboardStrategy()
+strat_j1.add('a',FonceStrategy())
+strat_j1.add('z',StaticStrategy())
+#strat_j1.add('e', GoalKeeperStrategy())
+#strat_j1.add('q'', DefenderStrategy()))
+#strat_j1.add('d',StrikerStrategy()) 
+team1.add("Jexp 1",strat_j1)
+team1.add("Jexp 2",StaticStrategy())
+team2 = SoccerTeam("team2")
+team2.add("rien 1", StaticStrategy())
+team2.add("rien 2", StaticStrategy())
 
 
 ### Transformation d'un etat en features : state,idt,idp -> R^d
-#def my_get_features(state,idt,idp):
-#    """ extraction du vecteur de features d'un etat, ici distance a la balle, distance au but, distance balle but """
-#    p_pos= state.player_state(idt,idp).position
-#    f1 = p_pos.distance(state.ball.position)
-#    f2= p_pos.distance( Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
-#    f3 = state.ball.position.distance(Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
-#    return [f1,f2,f3]
+def my_get_features(state,idt,idp):
+    """ extraction du vecteur de features d'un etat, ici distance a la balle, distance au but, distance balle but """
+    p_pos= state.player_state(idt,idp).position
+    f1 = p_pos.distance(state.ball.position)
+    f2= p_pos.distance( Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
+    f3 = state.ball.position.distance(Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
+    
+    return [f1,f2,f3]
 
 
-#def entrainement(fn):
-#    simu = Simulation(team1,team2)
-#    show_simu(simu)
-#    # recuperation de tous les etats
-#    training_states = strat_j1.states
-#    # sauvegarde dans un fichier
-#    dump_jsonz(training_states,fn)
+def entrainement(fn):
+    simu = Simulation(team1,team2)
+    show_simu(simu)
+    # recuperation de tous les etats
+    training_states = strat_j1.states
+    # sauvegarde dans un fichier
+    dump_jsonz(training_states,fn)
 
 def apprentissage(fn):
     ### chargement d'un fichier sauvegarder
