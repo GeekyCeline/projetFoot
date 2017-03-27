@@ -179,8 +179,8 @@ team2.add("rien 2", StaticStrategy())
 Out[1]: team2(): rien 1 (Static) rien 2 (Static)
 
 In [2]: %paste
-   simu = Simulation(team1,team2)
-    show_simu(simu)
+simu = Simulation(team1,team2)
+show_simu(simu)
 ## -- End pasted text --
   File "<ipython-input-2-cdcec1927c25>", line 2
     show_simu(simu)
@@ -216,12 +216,6 @@ Out[4]:
  (Step: 407, Ball: pos: (113.975019,40.456534), vit: (1.086625,-0.126672) (1,0):pos: (88.910738,42.923962), vit: (0.199037,-0.019608), action:Acc:(0.199037,-0.019608), Shoot:(5.957953,0.709079), Name: (1,1):pos: (15.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,0):pos: (135.000000,22.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: (2,1):pos: (135.000000,67.500000), vit: (0.000000,0.000000), action:Acc:(0.000000,0.000000), Shoot:(0.000000,0.000000), Name: score : 1-0,
   (1, 0, 'Static'))]
 
-In [5]: dx,dy = build_apprentissage(strat_j1.sta
-strat_j1.state   strat_j1.states  
-
-In [5]: dx,dy = build_apprentissage(strat_j1.states,m
-%macro       %man         %mkdir       %mv          max          min
-%magic       %matplotlib  %more        map          memoryview   
 
 In [5]: %paste
 
@@ -248,197 +242,6 @@ Out[7]:
 In [8]: my_get_features(s[0],s[1][0],s[1][1])
 Out[8]: [4.514090089881471, 79.24252739873496, 75.0]
 
-In [9]: dx,dy = build_apprentissage(strat_j1.sta
-strat_j1.state   strat_j1.states  
-
-In [9]: dx,dy = build_apprentissage(strat_j1.states,
-Display all 372 possibilities? (y or n)
-%%!                        UnicodeTranslateError
-%%HTML                     UnicodeWarning
-%%SVG                      UserWarning
-%%bash                     ValueError
-%%capture                  Vector2D
-%%debug                    Warning
-%%file                     ZeroDivisionError
-%%html                     _
-%%javascript               _1
-%%latex                    _4
-%%perl                     _7
-%%prun                     _8
-%%pypy                     __
-%%python                   __IPYTHON__
-%%python2                  __IPYTHON__active
-%%python3                  ___
-%%ruby                     __builtin__
-%%script                   __debug__
-%%sh                       __doc__
-%%svg                      __import__
-%%sx                       __init__.py
-%%system                   __init__.pyc
-%%time                     __name__
-%%timeit                   __package__
-%%writefile                _dh
-%alias                     _i
-%alias_magic               _i1
-%autocall                  _i2
-%autoindent                _i3
-%automagic                 _i4
-%bookmark                  _i5
-%cat                       _i6
-%cd                        _i7
-%clear                     _i8
-%colors                    _ih
-%config                    _ii
-%cp                        _iii
-%cpaste                    _oh
-%debug                     _sh
-%dhist                     abs
-%dirs                      affiche_arbre
-%doctest_mode              all
-%ed                        and
-%edit                      any
-%env                       apply
-%gui                       apprend_arbre
-%hist                      arbres_dec.py
-%history                   arbres_utils.py
-%install_default_config    arbres_utils.pyc
-%install_ext               as
-%install_profiles          assert
-%killbgscripts             basestring
-%ldir                      bin
-%less                      bool
-%lf                        break
-%lk                        buffer
-%ll                        build_apprentissage
-%load                      bytearray
-%load_ext                  bytes
-%loadpy                    callable
-%logoff                    chr
-%logon                     class
-%logstart                  classmethod
-%logstate                  cmp
-%logstop                   coerce
-%ls                        compile
-%lsmagic                   complex
-%lx                        continue
-%macro                     copyright
-%magic                     credits
-%man                       def
-%matplotlib                del
-%mkdir                     delattr
-%more                      dict
-%mv                        dir
-%notebook                  divmod
-%page                      dreload
-%paste                     dump_jsonz
-%pastebin                  elif
-%pdb                       else
-%pdef                      enumerate
-%pdoc                      eval
-%pfile                     except
-%pinfo                     exec
-%pinfo2                    execfile
-%popd                      exemple.py
-%pprint                    exit
-%precision                 export_graphviz
-%profile                   file
-%prun                      filter
-%psearch                   finally
-%psource                   float
-%pushd                     for
-%pwd                       format
-%pycat                     from
-%pylab                     frozenset
-%quickref                  genere_dot
-%recall                    get_ipython
-%rehashx                   getattr
-%reload_ext                global
-%rep                       globals
-%rerun                     hasattr
-%reset                     hash
-%reset_selective           help
-%rm                        hex
-%rmdir                     id
-%run                       if
-%save                      import
-%sc                        in
-%set_env                   input
-%store                     int
-%sx                        intern
-%system                    is
-%tb                        isinstance
-%time                      issubclass
-%timeit                    iter
-%unalias                   lambda
-%unload_ext                len
-%who                       license
-%who_ls                    list
-%whos                      load_jsonz
-%xdel                      locals
-%xmode                     logging
-ArithmeticError            long
-AssertionError             map
-AttributeError             max
-BaseException              memoryview
-BufferError                min
-BytesWarning               my_get_features
-DTreeStrategy              next
-DecisionTreeClassifier     not
-DeprecationWarning         object
-EOFError                   observer.py
-Ellipsis                   oct
-EnvironmentError           open
-Exception                  or
-False                      ord
-FloatingPointError         os
-FonceStrategy              pass
-FutureWarning              pasted_block
-GeneratorExit              pow
-IOError                    print
-ImportError                probleme_projet
-ImportWarning              projet
-In                         property
-IndentationError           quit
-IndexError                 raise
-KeyError                   range
-KeyboardInterrupt          raw_input
-KeyboardStrategy           reduce
-LancerSimu.py              reload
-LancerSimu.pyc             repr
-LookupError                return
-MemoryError                reversed
-NameError                  round
-None                       s
-NotImplemented             set
-NotImplementedError        setattr
-OSError                    settings
-Out                        show_simu
-OverflowError              simple_example.py
-PendingDeprecationWarning  simu
-ReferenceError             slice
-RuntimeError               sorted
-RuntimeWarning             staticmethod
-Simulation                 str
-SoccerAction               strat_j1
-SoccerTeam                 sum
-StandardError              super
-StaticStrategy             team1
-StopIteration              team2
-Strategie_de_base.py       test.py
-StrategiesCreees.py        tools.py
-StrategiesCreees.pyc       tools.pyc
-Strategy                   try
-SyntaxError                tuple
-SyntaxWarning              type
-SystemError                unichr
-SystemExit                 unicode
-TabError                   vars
-True                       version_lun12.py
-TypeError                  while
-UnboundLocalError          with
-UnicodeDecodeError         xrange
-UnicodeEncodeError         yield
-UnicodeError               zip
 
 In [9]: dx,dy = build_apprentissage(strat_j1.states,my_get_features)
 
@@ -494,3 +297,12 @@ Use dot -Tpdf test_arbre.dot test_arbre..pdf to generate pdf
 
 In [17]: 
 
+
+la veille 
+
+startegie 
+intro =organisation des classes
+description des strategie 
+rapport sur git 
+!= strategies
+5 slides 
