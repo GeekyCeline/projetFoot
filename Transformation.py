@@ -30,14 +30,15 @@ def my_get_features(state,idt,idp):
 #    return [f1,f2,f3]
     mystate=MyState(state,idt,idp)
     qui=Qui_a_la_balle(state,idt,idp)
+    act=Action (state,idt,idp)
+    pos=Position(state,idt,idp)
     #p_pos= mystate.my_position()
     f1 = mystate.distance_ball_player
     f2 = p_pos.distance( Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
-    f3 = state.ball.position.distance(Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.))
-    #f4 = qui.j_ai_la_balle ne sert a rien car deja utilser dans le joueur 
+    f3 = state.ball.position.distance(Vector2D((2-idt)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)) #ne sert a rien car deja utilser dans le joueur 
     #f5 = qui.mon_equipe_a_la_b()
-    #f4 = 
-    #f5 =
+    f4 = pos.joueur_le_plus_proche(1)
+    f5 =act.passe_test(state,idt,idp)
     return [f1,f2,f3,f4,f5]
     
     

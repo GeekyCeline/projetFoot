@@ -6,7 +6,7 @@ Created on Mon Jan 30 18:38:40 2017
 """
 from soccersimulator.strategies import Strategy
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
-from StrategiesCreees import RandomStrategy,StrikerStrategy, StrikerStrategy_de_base,Attaquant1, Striker1 ,DefenderStrategy_de_base, GoalKeeperStrategy,DefenderStrategy
+from StrategiesCreees import RandomStrategy,StrikerStrategy,passeur,attend,passeur_aller_vers, StrikerStrategy_de_base,Attaquant1, Striker1 ,DefenderStrategy_de_base, GoalKeeperStrategy,DefenderStrategy
 
 #import simple_exemple_commun
 #ou from teams import team1, team2
@@ -19,7 +19,8 @@ gryfondor= SoccerTeam(name="team2",login="etu2")
 def get_team(i):
     if i ==1:
         g= SoccerTeam(name="Gryffondor")
-        g.add("Attaquant1",Attaquant1())#+DefenderStrategy()) 
+        g.add("Attaquant1",passeur())#+DefenderStrategy()) 
+
         return g
     if i ==2:
         g= SoccerTeam(name="Gryffondor")
@@ -29,10 +30,10 @@ def get_team(i):
         return g
     if i ==4:
         g= SoccerTeam(name="Gryffondor")
-        g.add("Potter",StrikerStrategy())
-        g.add("Weasley",GoalKeeperStrategy())
-        g.add("Granger",DefenderStrategy_de_base())
-        g.add("Dumbledore",Attaquant1())
+        g.add("Potter",passeur())
+        g.add("Weasley",passeur())
+        g.add("Granger",passeur())
+        g.add("Dumbledore",passeur_aller_vers())
         return g
 
 def get_team_adv(i):
@@ -47,10 +48,10 @@ def get_team_adv(i):
         return s
     if i ==4:
         s= SoccerTeam(name="Serpentard")
-        s.add("Malfoy",StrikerStrategy_de_base())
-        s.add("Crabe",GoalKeeperStrategy())
-        s.add("Goyle",DefenderStrategy_de_base())
-        s.add("Voldemort",StrikerStrategy_de_base())
+        s.add("orochimaru",attend())
+        s.add("Crabe",attend())
+        s.add("Goyle",attend())
+        s.add("Voldemort",attend())
         return s
 
 

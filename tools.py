@@ -87,7 +87,7 @@ class MyState(object):
         else: 
             return self.ball_position.distance(Vector2D(GAME_WIDTH,GAME_HEIGHT/2-GAME_WIDTH,(GAME_GOAL_HEIGHT/2)))
     
-    @property
+    
     def but(self,id_team): 
         """retourne la position des cages/buts  d'un joueur (self.cage)"""
         if self.est_team1():
@@ -306,39 +306,31 @@ class Action(object):
         if essai.est_team1():
             return SoccerAction(POS_DEFAUT-essai.my_position,Vector2D(3.14,20))
         return SoccerAction(POS_DEFAUT2-essai.my_position,Vector2D(6.18,20))
-
-    def passe1(self,state,id_team,id_player): 
-        mystate = MyState(self.state,self.idt,self.idp)
-        posi  = Position(self.state,self.idt,self.idp)
-        distance = mystate.distance_ball_player
-        if distance <= mystate.PR_BR:
-            print("ici")
-            if posi.joueur_le_plus_proche(id_player,self): 
-               #return shoot(self,Position.joueur_le_plus_proche(self,state,id_team_id_player))
-                shoot = mystate.but(mystate.adv())-mystate.my_position
-                shoot.x =shoot.x - (GAME_GOAL_HEIGHT /2.4)
-                shoot.y =shoot.y - (GAME_GOAL_HEIGHT /2.4)
-                print("ici2")
-            return SoccerAction(posi.joueur_le_plus_proche(id_player,self)-mystate.my_position(),shoot(self))
-    
+#
+#    def passe1(self,state,id_team,id_player): 
+#        mystate = MyState(self.state,self.idt,self.idp)
+#        posi  = Position(self.state,self.idt,self.idp)
+#        distance = mystate.distance_ball_player
+#        if distance <= mystate.PR_BR:
+#            print("ici")
+#            if posi.joueur_le_plus_proche(): 
+#               #return shoot(self,Position.joueur_le_plus_proche(self,state,id_team_id_player))
+#                shoot = mystate.but(mystate.adv())-mystate.my_position
+#                shoot.x =shoot.x - (GAME_GOAL_HEIGHT /2.4)
+#                shoot.y =shoot.y - (GAME_GOAL_HEIGHT /2.4)
+#                print("ici2")
+#            return SoccerAction(posi.joueur_le_plus_proche(1)-mystate.my_position(),shoot(self))
+#    
     def passe_test(self,state,id_team,id_player): 
         posi  = Position(self.state,self.idt,self.idp)
         mystate = MyState(self.state,self.idt,self.idp)
         proche= posi.joueur_le_plus_proche(self)
         
-        if proche != mystate.my_position and Qui_a_la_balle.j_ai_la_balle: 
-            return SoccerAction(proche-mystate.ball_position, 10)
+        if Qui_a_la_balle.j_ai_la_balle == True: 
+            return SoccerAction(proche-mystate.ball_position,Vector2D(angle= 10))
+        else:
+            return SoccerAction()#SoccerAction(mystate.distance_ball_player)
         
-#    def passe(self):
-#        mystate = MyState(self.state,self.idt,self.idp)
-#        posi  = Position(self.state,self.idt,self.idp)
-#        print("ici")
-#        if mystate.distance_ball_player < mystate.PR_BR : 
-#            #return SoccerAction( Vector2D(), (posi.joueur_le_plus_proche(1)- mystate.ball_position ).norm_max(5))
-#            
-#            return SoccerAction(Vector2D(), (posi.joueur_le_plus_proche(self)- mystate.ball_position ).norm_max(5))
-#        print("la")
-#        return SoccerAction(mystate.ball_position - mystate.my_position)
     
     def shoot(self,state,id_team,id_player):
         mystate = MyState(self.state,self.idt,self.idp)
@@ -350,9 +342,14 @@ class Action(object):
                 sh = Vector2D(20)
         return sh
 
-#    def dribbler(self): 
-#        liste=[]
-#        for i in position_tout_les_joueurs(): 
-#            if self.idt== mystate.adv(self): 
-#                liste.append(i)
-#        if 
+    def dribbler(self): 
+        pos=Position(self.state,self.idt,self.idp)
+        mystate = MyState(self.state,self.idt,self.idp)
+        liste_adversaire=[]
+        for i in pos.position_tout_les_joueurs(): 
+            if self.idt == mystate.adv(): 
+                liste_adversaire.append(i)
+        for j in range(0,len(liste_adversaire)): 
+            if (pos.joueur_le_plus_proche(1).x == liste_adversaire[j].x) and (pos.joueur_le_plus_proche(1).y == liste_adversaire[j].y):
+                SoccerAction(((liste_adversaire[j])+Vector2D(10,0))- mystate.myposition,Vector2D(angle=0,norm=10))
+            

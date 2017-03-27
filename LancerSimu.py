@@ -4,14 +4,14 @@ Created on Mon Jan 30 18:59:43 2017
 
 @author: 3407073
 """
-from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy
+from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy,passeur,attend,passeur_aller_vers
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
 from soccersimulator.gui import SimuGUI,show_state,show_simu
 from soccersimulator.utils import Vector2D
 from __init__ import *
 #Creation d'une partie
 import logging
-from arbres_dec import * 
+#from arbres_dec import * 
 logging.basicConfig(level=logging.DEBUG)
 
 
