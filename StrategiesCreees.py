@@ -44,7 +44,7 @@ class Striker1(Strategy): #1 vs 1
              #return SoccerAction(mystate.ball_position-mystate.my_position ,V) + act.passe()
          #return act.dribbler(self)
          
-class Attaquant1(Strategy):
+class Attaquant1(Strategy): #STRICKER4  et STRICKER1 pour team 1 à 1vs1,2vs2 et 4vs4 mais 4vs 4 pour team 2
     def __init__(self):
         Strategy.__init__(self,"Attaquant1")
     def compute_strategy(self,state,id_team,id_player):
@@ -58,7 +58,7 @@ class Attaquant1(Strategy):
          #      Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position,20)         
 
          
-class StrikerStrategy_de_base(Strategy): #attaquant de base 2 vs 2
+class StrikerStrategy_de_base(Strategy): #STRICKER2 attaquant de base 2 vs 2
 	def __init__(self): 
 		Strategy.__init__(self,"Striker_de_base")
 	def compute_strategy(self,state,id_team,id_player):
@@ -82,7 +82,7 @@ class StrikerStrategy_de_base(Strategy): #attaquant de base 2 vs 2
 
 #==============================================================================
  
-class StrikerStrategy(Strategy): # 4 vs 4 pour 1 joueur 
+class StrikerStrategy(Strategy): # STRICKER4 4 vs 4 pour 1 joueur 
     def __init__(self):
         Strategy.__init__(self,"Striker")
     def compute_strategy(self,state,id_team,id_player):
