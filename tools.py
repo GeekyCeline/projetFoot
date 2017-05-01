@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 29 21:07:10 2017
-@author: Soumahoro Kady
-"""
 
 # -*- coding: utf-8 -*-
 """
@@ -35,10 +30,7 @@ maxBallAcceleration = 5 #
 #mes variables globales
 
 POS_DEFAUT = Vector2D(20,45)     #goal team 1
-
 POS_DEFAUT2 = Vector2D(GAME_WIDTH+45,GAME_WIDTH/2)  #goal team 2
-
-
 
 # parametres utilisés
 
@@ -78,7 +70,6 @@ class MyState(object):
     def distance_ball_player(self):
         """retourne distance entre le joueur et la balle"""
         return self.ball_position.distance(self.my_position)
-  
     @property
     def distance_but_ball(self):
         """retourne la distance entre la balle et les cages/buts"""
@@ -86,11 +77,7 @@ class MyState(object):
             return self.ball_position.distance(Vector2D(0,GAME_HEIGHT/2-(GAME_GOAL_HEIGHT/2)))
         else: 
             return self.ball_position.distance(Vector2D(GAME_WIDTH,GAME_HEIGHT/2-GAME_WIDTH,(GAME_GOAL_HEIGHT/2)))
-<<<<<<< HEAD
-    
-=======
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
-    
+
     @property
     def but(self,id_team): 
         """retourne la position des cages/buts  d'un joueur (self.cage)"""
@@ -99,7 +86,6 @@ class MyState(object):
         else:
             return (Vector2D(GAME_WIDTH,GAME_HEIGHT/2-GAME_WIDTH,(GAME_GOAL_HEIGHT/2)))
       
-    
     #@property
     def est_team1(self):
         """retourne True si le joueur/self est dans l'équipe 1 sino False """
@@ -286,7 +272,6 @@ class Action(object):
         self.idt= id_team
         self.idp = id_player
        
-    
     def aller_vers_balle(self):
         mystate = MyState(self.state,self.idt,self.idp)
         return SoccerAction(mystate.distance_ball_player,Vector2D(angle=3.14,norm=55))
@@ -310,7 +295,7 @@ class Action(object):
         if essai.est_team1():
             return SoccerAction(POS_DEFAUT-essai.my_position,Vector2D(3.14,20))
         return SoccerAction(POS_DEFAUT2-essai.my_position,Vector2D(6.18,20))
-<<<<<<< HEAD
+
 #
 #    def passe1(self,state,id_team,id_player): 
 #        mystate = MyState(self.state,self.idt,self.idp)
@@ -326,18 +311,7 @@ class Action(object):
 #                print("ici2")
 #            return SoccerAction(posi.joueur_le_plus_proche(1)-mystate.my_position(),shoot(self))
 #    
-    def passe_test(self,state,id_team,id_player): 
-        posi  = Position(self.state,self.idt,self.idp)
-        mystate = MyState(self.state,self.idt,self.idp)
-        proche= posi.joueur_le_plus_proche(self)
         
-        if Qui_a_la_balle.j_ai_la_balle == True: 
-            return SoccerAction(proche-mystate.ball_position,Vector2D(angle= 10))
-        else:
-            return SoccerAction()#SoccerAction(mystate.distance_ball_player)
-        
-=======
-
     def passe1(self,state,id_team,id_player): 
         mystate = MyState(self.state,self.idt,self.idp)
         posi  = Position(self.state,self.idt,self.idp)
@@ -370,7 +344,7 @@ class Action(object):
 #            return SoccerAction(Vector2D(), (posi.joueur_le_plus_proche(self)- mystate.ball_position ).norm_max(5))
 #        print("la")
 #        return SoccerAction(mystate.ball_position - mystate.my_position)
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
+
     
     def shoot(self,state,id_team,id_player):
         mystate = MyState(self.state,self.idt,self.idp)
@@ -382,7 +356,6 @@ class Action(object):
                 sh = Vector2D(20)
         return sh
 
-<<<<<<< HEAD
     def dribbler(self): 
         pos=Position(self.state,self.idt,self.idp)
         mystate = MyState(self.state,self.idt,self.idp)
@@ -393,12 +366,4 @@ class Action(object):
         for j in range(0,len(liste_adversaire)): 
             if (pos.joueur_le_plus_proche(1).x == liste_adversaire[j].x) and (pos.joueur_le_plus_proche(1).y == liste_adversaire[j].y):
                 SoccerAction(((liste_adversaire[j])+Vector2D(10,0))- mystate.myposition,Vector2D(angle=0,norm=10))
-            
-=======
-#    def dribbler(self): 
-#        liste=[]
-#        for i in position_tout_les_joueurs(): 
-#            if self.idt== mystate.adv(self): 
-#                liste.append(i)
-#        if 
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
+           
