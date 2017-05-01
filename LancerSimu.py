@@ -33,6 +33,6 @@ simu.start()
 #    show_simu(simu)
 #    # recuperation de tous les etats
 #    training_states = strat_j1.states
-#    # sauvegarde dans un fichier
+#    # sauvegarde dans un fichier m
 #    dump_jsonz(training_states,fn)
 #    dump_jsonz(training_states,fn)
