@@ -40,18 +40,14 @@ class Striker1(Strategy): #1 vs 1
          if mystate.distance_ball_player< mystate.PR_BR and mystate.my_position<mystate.ball_position.x: 
              return SoccerAction((mystate.ball_position -mystate.my_position),(Vector2D(x=GAME_WIDTH,y=MEDIUM_HEIGHT)).nor_max(5))
          elif mystate.distance_ball_player< mystate.PR_BR and mystate.my_position<mystate.ball_position.x: 
-<<<<<<< HEAD
              return SoccerAction(mystate.ball_position-mystate.my_position ,V)# + act.passe_test(state,id_team,id_player)
-=======
-             return SoccerAction(mystate.ball_position-mystate.my_position ,V) + act.passe()
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
+             #return SoccerAction(mystate.ball_position-mystate.my_position ,V) + act.passe()
          #return act.dribbler(self)
          
 class Attaquant1(Strategy):
     def __init__(self):
         Strategy.__init__(self,"Attaquant1")
     def compute_strategy(self,state,id_team,id_player):
-<<<<<<< HEAD
         qui=Qui_a_la_balle(state,id_team,id_player)
         act= Action(state,id_team,id_player)
         #if qui.j_ai_la_balle()==True: 
@@ -60,10 +56,7 @@ class Attaquant1(Strategy):
                Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position)  
         #return SoccerAction(state.ball.position-state.player_state(id_team,id_player).position,\
          #      Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position,20)         
-=======
-        return SoccerAction(state.ball.position-state.player_state(id_team,id_player).position,\
-                Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position)         
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
+
          
 class StrikerStrategy_de_base(Strategy): #attaquant de base 2 vs 2
 	def __init__(self): 
@@ -73,14 +66,7 @@ class StrikerStrategy_de_base(Strategy): #attaquant de base 2 vs 2
          act = Action(state,id_team,id_player)
          pos = Position(state,id_team,id_player)
          qui= Qui_a_la_balle(state,id_team,id_player)
-<<<<<<< HEAD
          p=act.passe_test(state,id_team,id_player)
-=======
-         
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
-         balle_proche = tools.PLAYER_RADIUS + tools.BALL_RADIUS
-         shoot = Vector2D(0,0)
-        # act.shoot(self)
          balle_proche = tools.PLAYER_RADIUS + tools.BALL_RADIUS
          shoot = Vector2D(0,0)
          if mystate.est_team1(): 
@@ -88,16 +74,11 @@ class StrikerStrategy_de_base(Strategy): #attaquant de base 2 vs 2
          else:
              V = Vector2D(angle=3.14,norm=1.8)
          #j=pos.position_tout_les_joueurs()
- 
-         if qui.mon_equipe_a_la_b() and mystate.distance_ball_player > 40 : 
+ 	 if qui.mon_equipe_a_la_b() and mystate.distance_ball_player > 40 : 
              return mystate.en_attente
          else:
              if qui.j_ai_la_balle :
-<<<<<<< HEAD
                  return SoccerAction(mystate.ball_position-mystate.my_position ,V) +p#+act.dribbler()#+ act.passe_test(state,id_team,id_player)
-=======
-                 return SoccerAction(mystate.ball_position-mystate.my_position ,V) + act.passe_test(state,id_team,id_player)
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
 
 #==============================================================================
  
@@ -126,16 +107,12 @@ class StrikerStrategy(Strategy): # 4 vs 4 pour 1 joueur
                 return SoccerAction(state.ball.position-state.player_state(id_team,id_player).position,\
                     Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position) 
      
- 
-<<<<<<< HEAD
 
 class passeur(Strategy):
     def __init__(self):
         Strategy.__init__(self,"passeur")
     def compute_strategy(self,state,id_team,id_player):
-       
         act = Action(state,id_team,id_player)
-       
         return  act.passe_test(state,id_team,id_player)
         
 class passeur_aller_vers(Strategy):
@@ -151,12 +128,9 @@ class attend(Strategy):
     def __init__(self):
         Strategy.__init__(self,"attend")
     def compute_strategy(self,state,id_team,id_player):
-       
         mystate = MyState(state,id_team,id_player)
         return  mystate.en_attente
-=======
- 
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
+
 '''
   autre type d'attaquant 
 '''
