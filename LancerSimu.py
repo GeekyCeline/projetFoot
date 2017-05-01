@@ -4,19 +4,15 @@ Created on Mon Jan 30 18:59:43 2017
 
 @author: 3407073
 """
-<<<<<<< HEAD
-from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy,passeur,attend,passeur_aller_vers
-=======
-from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
+from StrategiesCreees import RandomStrategy,StrikerStrategy_de_base, DefenderStrategy_de_base, GoalKeeperStrategy #,passeur,attend,passeur_aller_vers
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
 from soccersimulator.gui import SimuGUI,show_state,show_simu
 from soccersimulator.utils import Vector2D
 from __init__ import *
 #Creation d'une partie
-import logging
+#import logging
 #from arbres_dec import * 
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 
 
 i=input("Cliquez sur 1 pour un match en 1 vs 1, sur 2 pour un match en 2 vs 2 et sur 4 pour un match ")
@@ -38,9 +34,5 @@ simu.start()
 #    # recuperation de tous les etats
 #    training_states = strat_j1.states
 #    # sauvegarde dans un fichier
-<<<<<<< HEAD
 #    dump_jsonz(training_states,fn)
-=======
 #    dump_jsonz(training_states,fn)
-#cpickle pour enregistrer le pdf 
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
