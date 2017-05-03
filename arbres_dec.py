@@ -38,10 +38,7 @@ strat_j1.add('e',DefenderStrategy()) # ajouter
 strat_j1.add('d',GoalKeeperStrategy())
 strat_j1.add('q',StrikerStrategy()) 
 strat_j1.add('f',StrikerStrategy_de_base())
-<<<<<<< HEAD
 strat_j1.add('x',Striker1())
-=======
->>>>>>> 11ce44acedc4696eb6c0452e9fb2ea242fc6e4ad
 #ajouter si besoin 
 team1 = SoccerTeam('team1')
 team1.add("Jexp 1",strat_j1)

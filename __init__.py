@@ -6,8 +6,7 @@ Created on Mon Jan 30 18:38:40 2017
 """
 from soccersimulator.strategies import Strategy
 from soccersimulator.mdpsoccer import SoccerTeam, Simulation,SoccerAction
-from StrategiesCreees import RandomStrategy,StrikerStrategy,passeur,attend,passeur_aller_vers, StrikerStrategy_de_base,Attaquant1, Striker1 ,DefenderStrategy_de_base, GoalKeeperStrategy,DefenderStrategy
-#from StrategiesCreees import RandomStrategy,StrikerStrategy, StrikerStrategy_de_base,Attaquant1, Striker1 ,DefenderStrategy_de_base, GoalKeeperStrategy,DefenderStrategy
+from StrategiesCreees import RandomStrategy,Striker2,passeur_aller_vers,Striker1,Striker4,GoalKeeperStrategy,DefenderStrategy
 
 #import simple_exemple_commun
 #ou from teams import team1, team2
@@ -20,38 +19,38 @@ gryfondor= SoccerTeam(name="team2",login="etu2")
 def get_team(i):
     if i ==1:
         g= SoccerTeam(name="Gryffondor")
-        g.add("Attaquant1",Attaquant1())#+DefenderStrategy()) 
+        g.add("Saitama",Striker1())
+
         return g
     if i ==2:
         g= SoccerTeam(name="Gryffondor")
-        g.add("Weasley",Attaquant1())
-        g.add("celine",StrikerStrategy_de_base())
-        #g.add("Granger",GoalKeeperStrategy())
+        g.add("Ken Kanegi",GoalKeeperStrategy())
+        g.add("Light Yagami",Striker2())
         return g
     if i ==4:
         g= SoccerTeam(name="Gryffondor")
-        g.add("Potter",StrikerStrategy())
-        g.add("Weasley",GoalKeeperStrategy())
-        g.add("Granger",DefenderStrategy_de_base())
-        g.add("Dumbledore",Attaquant1())
+        g.add("Oroshimaru",Striker2())
+        g.add("Itachi",GoalKeeperStrategy())
+        g.add("Potter",Striker1())
+        g.add("Kurosaki Ichigo",DefenderStrategy())
         return g
 
 def get_team_adv(i):
     if i ==1:
         s= SoccerTeam(name="Serpentard")
-        s.add("Malfoy",StrikerStrategy()) 
+        s.add("Malfoy",Striker1()) 
         return s
     if i ==2:
         s= SoccerTeam(name="Serpentard")
-        s.add("Crabe",DefenderStrategy_de_base())
-        s.add("Goyle",StrikerStrategy_de_base())
+        s.add("Crabe",GoalKeeperStrategy())
+        s.add("Goyle",Striker2())
         return s
     if i ==4:
         s= SoccerTeam(name="Serpentard")
-        s.add("orochimaru",StrikerStrategy())
-        s.add("tsunade",GoalKeeperStrategy())
-        s.add("Kakashi",DefenderStrategy_de_base())
-        s.add("Voldemort",Attaquant1())
+        s.add("Potter",Striker2())#GoalKeeperStrategy())
+        s.add("Crabe",GoalKeeperStrategy())
+        s.add("Goyle",Striker1())
+        s.add("Voldemort",DefenderStrategy())
         return s
 
 
