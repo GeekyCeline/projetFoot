@@ -57,7 +57,7 @@ class Striker1(Strategy):
         #return SoccerAction(state.ball.position-state.player_state(id_team,id_player).position,\
          #      Vector2D((2-id_team)*settings.GAME_WIDTH,settings.GAME_HEIGHT/2.)-state.ball.position,20)         
          
-class Striker2(Strategy): # 4 vs 4 pour 1 joueur 
+class Striker2(Strategy): # 2 vs 2 (et est utilisée pour 1 joueur avec 4 vs 4 ->fonctionne bien) 
     def __init__(self):
         Strategy.__init__(self,"Striker")
     def compute_strategy(self,state,id_team,id_player):
